@@ -45,16 +45,25 @@
 </li>
 <li>movie: <a href="takahashi12new.mp4">mp4</a>
 </li>
-<li>bibtex:</li>
-</ul>
-
+<li>bibtex:
 <pre><code>@inproceedings{takahashi12new,
   title = {A New Mirror-based Extrinsic Camera Calibration Using an Orthogonality Constraint},
   author = {Kosuke Takahashi and Shohei Nobuhara and Takashi Matsuyama},
   booktitle = {Proc.\ of CVPR},
   year = {2012},
 }
+@article{takahashi2016mirror,
+  title={Mirror-based Camera Pose Estimation Using an Orthogonality Constraint},
+  author={Kosuke Takahashi and Shohei Nobuhara and Takashi Matsuyama},
+  journal={IPSJ Transactions on Computer Vision and Applications},
+  volume={8},
+  number={ },
+  pages={11-19},
+  year={2016}
+}
 </code></pre>
+</li>
+</ul>
 
 <p>The motivation of this project is to calibrate a camera w.r.t. a reference object which is not observable from the camera. This happens, for example, in display-camera systems such
 as digital signage, webcam attached to laptop PC, etc. Once obtained the mapping between the display pixel coordinate system and the camera coordinate system, it becomes possible to
@@ -417,26 +426,23 @@ unction in <code>demo.cc</code>.</p>
 <li>
 <code>data/model.txt</code> is a line-oriented plain text file each of lines represents the 3D position of a reference point in $$X$$.</li>
 </ol>
-</li>
-</ol>
 
 <pre><code> 0.000000 0.000000 0.000000
  175.000000 0.000000 0.000000
  0.000000 100.000000 0.000000
 </code></pre>
+</li>
 
-<ol>
 <li>
 <code>data/input{1,2,3}.txt</code> are also line-oriented plain text files, and each of lines represents the 2D projection of the corresponding 3D reference point in <code>data/model.txt</code>. For examp
-le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of <code>data/model.txt</code>.</li>
-</ol>
+le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of <code>data/model.txt</code>.
 
 <pre><code> 380.608337 284.673645
  263.854279 284.595978
  377.368225 350.688141
 </code></pre>
+</li>
 
-<ol>
 <li>Exec the demo program again, and you will get the result.</li>
 </ol>
 
