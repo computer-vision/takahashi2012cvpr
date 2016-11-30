@@ -8,14 +8,6 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$$','$$'] ],
-          displayMath: [ ['$$$','$$$'] ]
-        }
-      });
-    </script>
   </head>
   <body>
     <section class="page-header">
@@ -189,7 +181,7 @@ d3 =
 
 <p>The figure below illustrates the measurement model of our method.</p>
 
-<p><img src="geometry.png" alt="Geometry"></p>
+<p><img src="geometry.gif" alt="Geometry"></p>
 
 <p>In this figure, we use the following notations. Notice that $${}^Yx$$ denotes $$x$$ in $$Y$$ coordinate system.</p>
 
@@ -216,37 +208,66 @@ So the input / output of the above-mentioned "tnm.m" can be expressed as follows
 
 <ul>
 <li>tnm.m
-** Input|$$q^i_j (i,j=1,2,3)$$ : 2D projections of three reference points observed via three mirrors $$\pi_j (j=1,2,3)$$.
-** Output|$$R, T$$ : The relative posture and position between the camera $$C$$ and the reference $$X$$.~
+
+<ul>
+<li>Input $$q^i_j (i,j=1,2,3)$$ : 2D projections of three reference points observed via three mirrors $$\pi_j (j=1,2,3)$$.</li>
+<li>Output $$R, T$$ : The relative posture and position between the camera $$C$$ and the reference $$X$$.~
 $${}^Cn_j, d_j (j=1,2,3)$$ : The orientations and distances of the three mirrors $$\pi_j (j=1,2,3)$$.</li>
+</ul>
+</li>
 </ul>
 
 <h3>
 <a id="sub-functions" class="anchor" href="#sub-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sub-functions</h3>
 
 <p>Our mirror-based calibration method consists of the following three steps, and we provide implementations corresponding to them.
-1. <code>sub_p3p.m</code>: P3P per mirrored image.
-** Input:
-*** $${}^Xp^i (i=1,2,3)$$ : Three reference points, and
-*** $$q^i (i)$$ : their projections observed via a mirror $$\pi$$.
-** Output: Up to 4 possible solutions of $${}^Cp^i$$
-2. <code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.
-** Input: 64 sets of $${}^Cp^i_j (i,j=1,2,3)$$.
-** Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.
-3. <code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.
-** Input: $${}^Cp^i_j (i,j=1,2,3)$$.
-** Output: $$R, T, n_j, d_j (j=1,2,3)$$.</p>
+1. <code>sub_p3p.m</code>: P3P per mirrored image.</p>
+
+<ul>
+<li>Input:
+
+<ul>
+<li>$${}^Xp^i (i=1,2,3)$$ : Three reference points, and</li>
+<li>$$q^i (i)$$ : their projections observed via a mirror $$\pi$$.</li>
+</ul>
+</li>
+<li>Output: Up to 4 possible solutions of $${}^Cp^i$$
+
+<ol>
+<li>
+<code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.</li>
+</ol>
+</li>
+<li>Input: 64 sets of $${}^Cp^i_j (i,j=1,2,3)$$.</li>
+<li>Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.
+
+<ol>
+<li>
+<code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.</li>
+</ol>
+</li>
+<li>Input: $${}^Cp^i_j (i,j=1,2,3)$$.</li>
+<li>Output: $$R, T, n_j, d_j (j=1,2,3)$$.</li>
+</ul>
 
 <p>And in addition, we use the following sub-function for evaluation purpose.</p>
 
 <ul>
 <li>
 <code>sub_reproj.m</code>: Reprojection error evaluation
-** Input:
-*** $${}^Xp^i (i=1,\dots)$$ : Any number of reference points.
-*** $$q^i_j (i=1,\dots, j=1,2,3)$$ : The projections of the reference points via mirrors.
-*** $$R, T, n_j, d_j (j=1,2,3)$$ : Estimated parameters.
-** Output: Average reprojection error.</li>
+
+<ul>
+<li>Input:
+
+<ul>
+<li>$${}^Xp^i (i=1,\dots)$$ : Any number of reference points.</li>
+<li>$$q^i_j (i=1,\dots, j=1,2,3)$$ : The projections of the reference points via mirrors.</li>
+<li>$$R, T, n_j, d_j (j=1,2,3)$$ : Estimated parameters.</li>
+</ul>
+</li>
+<li>Output: Average reprojection error.</li>
+</ul>
+</li>
 </ul>
 
 <h1>
