@@ -54,11 +54,11 @@ as digital signage, webcam attached to laptop PC, etc. Once obtained the mapping
 ely, while conventional methods typically restrict the head position to be fixed.</p>
 
 <p>The key point to solve the problem is the use of mirrored images.
-Suppose we have a single static camera (C) and a static reference object (X) as shown below.
-The camera (C) cannot observe the reference object (X) directly.
-Instead, we use a mirror (\pi) and let the camera (C) observe the reference object (X) through it.
-The goal of our mirror-based calibration is to estimate the relative posture (R) and position (T) of the camera (C) against the reference object (X) by observing three point
-s of (X) via three mirrors (\pi_j (j=1,2,3)) under different unknown positions and orientations.</p>
+Suppose we have a single static camera $$C$$ and a static reference object $$X$$ as shown below.
+The camera $$C$$ cannot observe the reference object $$X$$ directly.
+Instead, we use a mirror $$\pi$$ and let the camera $$C$$ observe the reference object $$X$$ through it.
+The goal of our mirror-based calibration is to estimate the relative posture $$R$$ and position $$T$$ of the camera $$C$$ against the reference object $$X$$ by observing three point
+s of $$X$$ via three mirrors $$\pi_j (j=1,2,3)$$ under different unknown positions and orientations.</p>
 
 <p><img src="overview.png" alt="Overview"></p>
 
@@ -183,34 +183,34 @@ d3 =
 
 <p><img src="geometry.png" alt="Geometry"></p>
 
-<p>In this figure, we use the following notations. Notice that ({}^Yx) denotes (x) in (Y) coordinate system.</p>
+<p>In this figure, we use the following notations. Notice that $${}^Yx$$ denotes $$x$$ in $$Y$$ coordinate system.</p>
 
 <ul>
-<li>(C) : camera.</li>
-<li>(\pi_j (j=1,2,3)) : three mirrors.</li>
-<li>({}^Cn_j (j=1,2,3)) : the normal vector of (\pi_j).</li>
-<li>(d_j (j=1,2,3)) : the distance from (C) to (\pi_j).</li>
-<li>({}^Xp^i (i=1,2,3)) : three reference points in the reference object coordinate system.</li>
-<li>({}^Cp^i (i=1,2,3)) : ({}^Xp^i) in the camera (C) coordinate system.</li>
-<li>({}^Cp^i_j (i,j=1,2,3)) : Reflection of ({}^Xp^i) by (\pi_j) in the camera (C) coordinate system.</li>
-<li>(q^i_j (i,j=1,2,3)) : 2D projection of ({}^Cp^i_j) in the camera (C) image screen.</li>
+<li>$$C$$ : camera.</li>
+<li>$$\pi_j (j=1,2,3)$$ : three mirrors.</li>
+<li>$${}^Cn_j (j=1,2,3)$$ : the normal vector of $$\pi_j$$.</li>
+<li>$$d_j (j=1,2,3)$$ : the distance from $$C$$ to $$\pi_j$$.</li>
+<li>$${}^Xp^i (i=1,2,3)$$ : three reference points in the reference object coordinate system.</li>
+<li>$${}^Cp^i (i=1,2,3)$$ : $${}^Xp^i$$ in the camera $$C$$ coordinate system.</li>
+<li>$${}^Cp^i_j (i,j=1,2,3)$$ : Reflection of $${}^Xp^i$$ by $$\pi_j$$ in the camera $$C$$ coordinate system.</li>
+<li>$$q^i_j (i,j=1,2,3)$$ : 2D projection of $${}^Cp^i_j$$ in the camera $$C$$ image screen.</li>
 </ul>
 
-<p>The goal is to estimate the relative rotation (R) and translation (T) between the camera (C) and the reference (X) which satisfy</p>
+<p>The goal is to estimate the relative rotation $$R$$ and translation $$T$$ between the camera $$C$$ and the reference $$X$$ which satisfy</p>
 
 <blockquote>
-<p>({}^Cp^i = R \cdot {}^Xp^i + T (i=1,2,3) ). (1)</p>
+<p>$${}^Cp^i = R \cdot {}^Xp^i + T (i=1,2,3) $$. (1)</p>
 </blockquote>
 
-<p>by knowing (q^i_j (i,j=1,2,3)), the projections of ({}^Xp^i) observed via three different mirrors (\pi_j (j=1,2,3)) of unknown positions. The orientation and the position of t
+<p>by knowing $$q^i_j (i,j=1,2,3)$$, the projections of $${}^Xp^i$$ observed via three different mirrors $$\pi_j (j=1,2,3)$$ of unknown positions. The orientation and the position of t
 he mirrors (the distances from the camera to the mirrors) are also estimated as a result.
 So the input / output of the above-mentioned "tnm.m" can be expressed as follows.</p>
 
 <ul>
 <li>tnm.m
-** Input|(q^i_j (i,j=1,2,3)) : 2D projections of three reference points observed via three mirrors (\pi_j (j=1,2,3)).
-** Output|(R, T) : The relative posture and position between the camera (C) and the reference (X).~
-({}^Cn_j, d_j (j=1,2,3)) : The orientations and distances of the three mirrors (\pi_j (j=1,2,3)).</li>
+** Input|$$q^i_j (i,j=1,2,3)$$ : 2D projections of three reference points observed via three mirrors $$\pi_j (j=1,2,3)$$.
+** Output|$$R, T$$ : The relative posture and position between the camera $$C$$ and the reference $$X$$.~
+$${}^Cn_j, d_j (j=1,2,3)$$ : The orientations and distances of the three mirrors $$\pi_j (j=1,2,3)$$.</li>
 </ul>
 
 <h3>
@@ -219,15 +219,15 @@ So the input / output of the above-mentioned "tnm.m" can be expressed as follows
 <p>Our mirror-based calibration method consists of the following three steps, and we provide implementations corresponding to them.
 1. <code>sub_p3p.m</code>: P3P per mirrored image.
 ** Input:
-*** ({}^Xp^i (i=1,2,3)) : Three reference points, and
-*** (q^i (i)) : their projections observed via a mirror (\pi).
-** Output: Up to 4 possible solutions of ({}^Cp^i)
+*** $${}^Xp^i (i=1,2,3)$$ : Three reference points, and
+*** $$q^i (i)$$ : their projections observed via a mirror $$\pi$$.
+** Output: Up to 4 possible solutions of $${}^Cp^i$$
 2. <code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.
-** Input: 64 sets of ({}^Cp^i_j (i,j=1,2,3)).
-** Output: The set of ({}^Cp^i_j (i,j=1,2,3)) which follows the orthogonality constraint best.
-3. <code>sub_tnm_rt.m</code>: Linear estimation of (R) and (T).
-** Input: ({}^Cp^i_j (i,j=1,2,3)).
-** Output: (R, T, n_j, d_j (j=1,2,3)).</p>
+** Input: 64 sets of $${}^Cp^i_j (i,j=1,2,3)$$.
+** Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.
+3. <code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.
+** Input: $${}^Cp^i_j (i,j=1,2,3)$$.
+** Output: $$R, T, n_j, d_j (j=1,2,3)$$.</p>
 
 <p>And in addition, we use the following sub-function for evaluation purpose.</p>
 
@@ -235,9 +235,9 @@ So the input / output of the above-mentioned "tnm.m" can be expressed as follows
 <li>
 <code>sub_reproj.m</code>: Reprojection error evaluation
 ** Input:
-*** ({}^Xp^i (i=1,\dots)) : Any number of reference points.
-*** (q^i_j (i=1,\dots, j=1,2,3)) : The projections of the reference points via mirrors.
-*** (R, T, n_j, d_j (j=1,2,3)) : Estimated parameters.
+*** $${}^Xp^i (i=1,\dots)$$ : Any number of reference points.
+*** $$q^i_j (i=1,\dots, j=1,2,3)$$ : The projections of the reference points via mirrors.
+*** $$R, T, n_j, d_j (j=1,2,3)$$ : Estimated parameters.
 ** Output: Average reprojection error.</li>
 </ul>
 
@@ -343,15 +343,15 @@ unction in `demo.cc`.
 # How to use the code with your own data
 
 To calibrate your own system, please follow the process below. In short, update `data/model.txt` and `data/input{1,2,3}.txt`, then run the program again.
-1. Suppose you have a reference object \(X\) and a camera \(C\).
-1.1. The intrinsic parameters of \(C\) should be provided. You can use OpenCV to estimate them.
-2. Capture three images of \(X\) as \(I_1, I_2, I_3\) via mirrors \(\pi_1, \pi_2, \pi_3\) under different poses.
-3. Detect three points of \(X\) for each of the images (\(I_1, I_2, I_3\)).
+1. Suppose you have a reference object $$X$$ and a camera $$C$$.
+1.1. The intrinsic parameters of $$C$$ should be provided. You can use OpenCV to estimate them.
+2. Capture three images of $$X$$ as $$I_1, I_2, I_3$$ via mirrors $$\pi_1, \pi_2, \pi_3$$ under different poses.
+3. Detect three points of $$X$$ for each of the images ($$I_1, I_2, I_3$$).
 3.1. Here we assume that the images are rectified (undistorted) using the intrinsic parameters before the detection.
-3.2. If you used a chessboard pattern as \(X\) and used OpenCV [findChessboardCorners()](http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch
-essboardcorners) to detect it in \(I_1, I_2, I_3\) automatically, you need to **flip** the detection result because the detector does not account for the observation via mirror.
+3.2. If you used a chessboard pattern as $$X$$ and used OpenCV [findChessboardCorners()](http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch
+essboardcorners) to detect it in $$I_1, I_2, I_3$$ automatically, you need to **flip** the detection result because the detector does not account for the observation via mirror.
 4. Store the data into `data/model.txt` and `data/input{1,2,3}.txt`.
-4.1. `data/model.txt` is a line-oriented plain text file each of lines represents the 3D position of a reference point in \(X\).
+4.1. `data/model.txt` is a line-oriented plain text file each of lines represents the 3D position of a reference point in $$X$$.
 </code></pre>
 
 <p>0.000000 0.000000 0.000000
@@ -359,7 +359,7 @@ essboardcorners) to detect it in \(I_1, I_2, I_3\) automatically, you need to **
  0.000000 100.000000 0.000000</p>
 
 <pre><code>4.2. `data/input{1,2,3}.txt` are also line-oriented plain text files, and each of lines represents the 2D projection of the corresponding 3D reference point in `data/model.txt`. For examp
-le, the first line below is the projection of the first reference point \((0,0,0)\) defined in the first line of `data/model.txt`.
+le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of `data/model.txt`.
 </code></pre>
 
 <p>380.608337 284.673645
