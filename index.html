@@ -8,14 +8,6 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$$','$$'] ],
-          displayMath: [ ['$$$','$$$'] ]
-        }
-      });
-    </script>
   </head>
   <body>
     <section class="page-header">
@@ -228,8 +220,11 @@ $${}^Cn_j, d_j (j=1,2,3)$$ : The orientations and distances of the three mirrors
 <h3>
 <a id="sub-functions" class="anchor" href="#sub-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sub-functions</h3>
 
-<p>Our mirror-based calibration method consists of the following three steps, and we provide implementations corresponding to them.
-1. <code>sub_p3p.m</code>: P3P per mirrored image.</p>
+<p>Our mirror-based calibration method consists of the following three steps, and we provide implementations corresponding to them.</p>
+
+<ol>
+<li>
+<code>sub_p3p.m</code>: P3P per mirrored image.
 
 <ul>
 <li>Input:
@@ -239,24 +234,26 @@ $${}^Cn_j, d_j (j=1,2,3)$$ : The orientations and distances of the three mirrors
 <li>$$q^i (i)$$ : their projections observed via a mirror $$\pi$$.</li>
 </ul>
 </li>
-<li>Output: Up to 4 possible solutions of $${}^Cp^i$$
-
-<ol>
-<li>
-<code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.</li>
-</ol>
+<li>Output: Up to 4 possible solutions of $${}^Cp^i$$</li>
+</ul>
 </li>
+<li>
+<code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.
+
+<ul>
 <li>Input: 64 sets of $${}^Cp^i_j (i,j=1,2,3)$$.</li>
-<li>Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.
-
-<ol>
-<li>
-<code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.</li>
-</ol>
+<li>Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.</li>
+</ul>
 </li>
+<li>
+<code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.
+
+<ul>
 <li>Input: $${}^Cp^i_j (i,j=1,2,3)$$.</li>
 <li>Output: $$R, T, n_j, d_j (j=1,2,3)$$.</li>
 </ul>
+</li>
+</ol>
 
 <p>And in addition, we use the following sub-function for evaluation purpose.</p>
 
@@ -368,13 +365,20 @@ enCV, of course).</p>
 <h2>
 <a id="brief-descriptions-of-the-code-1" class="anchor" href="#brief-descriptions-of-the-code-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Brief descriptions of the code</h2>
 
-<p>The structure of the code is very straightforward. Please visit the <code>main()</code> function in <code>demo.cc</code> first. The flow of <code>main()</code> is:
-1. load data from files (<code>model.txt</code>, <code>input{1,2,3}.txt</code>) by <code>load()</code> function defined in <code>demo.cc</code>.
-2. run calibration by <code>tnm()</code> function defined in tnm.h. What this function does inside is:
-2.1. call <code>sub_solveP3P()</code> defined in <code>sub_solveP3P.h</code> for each input data (= the Matlab function in <code>tnm-matlab/sub_p3p.m</code>),
-2.2. call <code>sub_tnm_orth()</code> defined in <code>tnm.h</code> (= the Matlab function in <code>tnm-matlab/sub_tnm_orth.m</code>), and
-2.3. call <code>sub_tnm_rt()</code> defined in <code>tnm.h</code> (= the Matlab function in <code>tnm-matlab/sub_tnm_rt.m</code>).
-3. run <code>sub_reproj()</code> defined in <code>demo.cc</code> to evaluate the reprojection error (= the Matlab function in <code>tnm-matlab/sub_reproj.m</code>).</p>
+<p>The structure of the code is very straightforward. Please visit the <code>main()</code> function in <code>demo.cc</code> first. The flow of <code>main()</code> is:</p>
+
+<ol>
+<li>load data from files (<code>model.txt</code>, <code>input{1,2,3}.txt</code>) by <code>load()</code> function defined in <code>demo.cc</code>.</li>
+<li>run calibration by <code>tnm()</code> function defined in tnm.h. What this function does inside is:
+
+<ol>
+<li>call <code>sub_solveP3P()</code> defined in <code>sub_solveP3P.h</code> for each input data (= the Matlab function in <code>tnm-matlab/sub_p3p.m</code>),</li>
+<li>call <code>sub_tnm_orth()</code> defined in <code>tnm.h</code> (= the Matlab function in <code>tnm-matlab/sub_tnm_orth.m</code>), and</li>
+<li>call <code>sub_tnm_rt()</code> defined in <code>tnm.h</code> (= the Matlab function in <code>tnm-matlab/sub_tnm_rt.m</code>).</li>
+</ol>
+</li>
+<li>run <code>sub_reproj()</code> defined in <code>demo.cc</code> to evaluate the reprojection error (= the Matlab function in <code>tnm-matlab/sub_reproj.m</code>).</li>
+</ol>
 
 <p>So to re-use the code for your own project, copy <code>tnm.h</code> and <code>sub_solveP3P.h</code>, and then use <code>tnm()</code> for calibration. To understand how to prepare the data, please consult the <code>load()</code> f
 unction in <code>demo.cc</code>.</p>
@@ -382,23 +386,42 @@ unction in <code>demo.cc</code>.</p>
 <h1>
 <a id="how-to-use-the-code-with-your-own-data" class="anchor" href="#how-to-use-the-code-with-your-own-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use the code with your own data</h1>
 
-<p>To calibrate your own system, please follow the process below. In short, update <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>, then run the program again.
-1. Suppose you have a reference object $$X$$ and a camera $$C$$.
-1.1. The intrinsic parameters of $$C$$ should be provided. You can use OpenCV to estimate them.
-2. Capture three images of $$X$$ as $$I_1, I_2, I_3$$ via mirrors $$\pi_1, \pi_2, \pi_3$$ under different poses.
-3. Detect three points of $$X$$ for each of the images ($$I_1, I_2, I_3$$).
-3.1. Here we assume that the images are rectified (undistorted) using the intrinsic parameters before the detection.
-3.2. If you used a chessboard pattern as $$X$$ and used OpenCV <a href="http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch%0Aessboardcorners">findChessboardCorners()</a> to detect it in $$I_1, I_2, I_3$$ automatically, you need to <strong>flip</strong> the detection result because the detector does not account for the observation via mirror.
-4. Store the data into <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>.
-4.1. <code>data/model.txt</code> is a line-oriented plain text file each of lines represents the 3D position of a reference point in $$X$$.</p>
+<p>To calibrate your own system, please follow the process below. In short, update <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>, then run the program again.</p>
+
+<ol>
+<li>Suppose you have a reference object $$X$$ and a camera $$C$$.
+
+<ol>
+<li>The intrinsic parameters of $$C$$ should be provided. You can use OpenCV to estimate them.</li>
+</ol>
+</li>
+<li>Capture three images of $$X$$ as $$I_1, I_2, I_3$$ via mirrors $$\pi_1, \pi_2, \pi_3$$ under different poses.</li>
+<li>Detect three points of $$X$$ for each of the images ($$I_1, I_2, I_3$$).
+
+<ol>
+<li>Here we assume that the images are rectified (undistorted) using the intrinsic parameters before the detection.</li>
+<li>If you used a chessboard pattern as $$X$$ and used OpenCV <a href="http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch%0Aessboardcorners">findChessboardCorners()</a> to detect it in $$I_1, I_2, I_3$$ automatically, you need to <strong>flip</strong> the detection result because the detector does not account for the observation via mirror.</li>
+</ol>
+</li>
+<li>Store the data into <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>.
+
+<ol>
+<li>
+<code>data/model.txt</code> is a line-oriented plain text file each of lines represents the 3D position of a reference point in $$X$$.</li>
+</ol>
+</li>
+</ol>
 
 <pre><code> 0.000000 0.000000 0.000000
  175.000000 0.000000 0.000000
  0.000000 100.000000 0.000000
 </code></pre>
 
-<p>4.2. <code>data/input{1,2,3}.txt</code> are also line-oriented plain text files, and each of lines represents the 2D projection of the corresponding 3D reference point in <code>data/model.txt</code>. For examp
-le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of <code>data/model.txt</code>.</p>
+<ol>
+<li>
+<code>data/input{1,2,3}.txt</code> are also line-oriented plain text files, and each of lines represents the 2D projection of the corresponding 3D reference point in <code>data/model.txt</code>. For examp
+le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of <code>data/model.txt</code>.</li>
+</ol>
 
 <pre><code> 380.608337 284.673645
  263.854279 284.595978
