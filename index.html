@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
     <meta charset="UTF-8">
     <title>Mirror-based Camera Pose Estimation Using an Orthogonality Constraint by computer-vision</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +50,7 @@
 
 <p>The motivation of this project is to calibrate a camera w.r.t. a reference object which is not observable from the camera. This happens, for example, in display-camera systems such as digital signage, webcam attached to laptop PC, etc. Once obtained the mapping between the display pixel coordinate system and the camera coordinate system, it becomes possible to compute the gazing point (pixel) of a person in front of the display by estimating the gazing direction in the camera coordinate system. This scenario allows the person to move freely, while conventional methods typically restrict the head position to be fixed.</p>
 
-<p>The key point to solve the problem is the use of mirrored images. Suppose we have a single static camera CC and a static reference object XX as shown below. The camera CC cannot observe the reference object XX directly. Instead, we use a mirror ππ and let the camera CC observe the reference object XX through it. The goal of our mirror-based calibration is to estimate the relative posture RR and position TT of the camera CC against the reference object XX by observing three points of XX via three mirrors πj(j=1,2,3)πj(j=1,2,3) under different unknown positions and orientations.</p>
+<p>The key point to solve the problem is the use of mirrored images. Suppose we have a single static camera CC and a static reference object $$X$$ as shown below. The camera CC cannot observe the reference object XX directly. Instead, we use a mirror ππ and let the camera CC observe the reference object XX through it. The goal of our mirror-based calibration is to estimate the relative posture RR and position TT of the camera CC against the reference object XX by observing three points of XX via three mirrors πj(j=1,2,3)πj(j=1,2,3) under different unknown positions and orientations.</p>
 
 <h1>
 <a id="source-code" class="anchor" href="#source-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source code</h1>
