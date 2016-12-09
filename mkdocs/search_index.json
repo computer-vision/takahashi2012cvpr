@@ -102,7 +102,7 @@
         },
         {
             "location": "/v2/",
-            "text": "Introduction\n\n\nThis page explains how to use the n-points / m-mirrors version.\n\n\nPrerequisite\n\n\nThe current implementation depends on \nEPnP provided by EPFL\n. Please download the matlab code and extract them in \n./matlab/\n directory. Our code calls \n./matlab/efficient_pnp_gauss.m\n internally.\n\n\nUsage\n\n\nThe usage is essentially identical to the \n3-points / 3-mirrors version\n. See \nmatlab/demo.m\n to change the number of points and mirrors.\n\n\nLimitations\n\n\nC++ version is not available for now.",
+            "text": "Introduction\n\n\nThis page explains how to use the n-points / m-mirrors version.\n\n\nPrerequisite\n\n\nThe current implementation depends on \nEPnP provided by EPFL\n. Please download the matlab code and extract them in \n./matlab/\n directory. Our code assumes \n./matlab/efficient_pnp_gauss.m\n is available.\n\n\nUsage\n\n\nThe usage is essentially identical to the \n3-points / 3-mirrors version\n. See \nmatlab/demo.m\n to change the number of points and mirrors.\n\n\nLimitations\n\n\nC++ version is not available for now.",
             "title": "Ver.2"
         },
         {
@@ -112,7 +112,7 @@
         },
         {
             "location": "/v2/#prerequisite",
-            "text": "The current implementation depends on  EPnP provided by EPFL . Please download the matlab code and extract them in  ./matlab/  directory. Our code calls  ./matlab/efficient_pnp_gauss.m  internally.",
+            "text": "The current implementation depends on  EPnP provided by EPFL . Please download the matlab code and extract them in  ./matlab/  directory. Our code assumes  ./matlab/efficient_pnp_gauss.m  is available.",
             "title": "Prerequisite"
         },
         {
