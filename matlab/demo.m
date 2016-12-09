@@ -34,13 +34,18 @@
 clear all;
 close all;
 
-model = load('data/model.txt');
+model = load('../data/model.txt');  
+%model = load('../data/model_3p.txt');  % in case of solving p3p
 
-input{1,1} = load('data/input1.txt');
-input{2,1} = load('data/input2.txt');
-input{3,1} = load('data/input3.txt');
+input{1,1} = load('../data/input1.txt'); % or input1_3p.txt (p3p)
+input{2,1} = load('../data/input2.txt'); % or input2_3p.txt (p3p)
+input{3,1} = load('../data/input3.txt'); % or input3_3p.txt (p3p)
+%input{4,1} = load('../data/input4.txt'); % or input4_3p.txt (p3p)
+%input{5,1} = load('../data/input5.txt'); % or input5_3p.txt (p3p)
 
-in_param = load('data/camera.txt');
+in_param = load('../data/camera.txt');
+
+num_of_mirror_pose = size(input, 1);
 
 % calibration step．
 
@@ -96,7 +101,7 @@ text(Cp_t(1,1) + offset, Cp_t(1,2) + offset, Cp_t(1,3) + offset, ...
 % plot mirrored reference points
 Cp_t_h = Cp_t;
 Cp_t_h(:,4) = 1;
-for i = 1:3
+for i = 1:num_of_mirror_pose
   n = n_t(i,:)';
   d = d_t(i,:);
   % Householder transformation
@@ -114,7 +119,7 @@ for i = 1:3
 end
 
 % plot mirror position estimated by TNM
-for i = 1:3
+for i = 1:num_of_mirror_pose
   m_pose = (mirrored_Cp{i,1}(:,1:3) + Cp_t) / 2;
   temp = m_pose(3,:);
   vec1 = m_pose(2,:) - m_pose(1,:);

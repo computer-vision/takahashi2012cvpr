@@ -48,18 +48,24 @@ q_h = q;
 num_of_mirror_pose = size(q_h, 1);
 
 for i = 1:num_of_mirror_pose
-
   % homogeneous coordinate system.
   q_h{i,1}(:,3) = 1;
 
+  num_of_points = size(q_h{i,1}, 1);
+
   % compute the 3D coordinates of mirrored reference points from thier projections.
-  [temp_R temp_T Cp_candidates{i,1}] = sub_p3p(Xp, q_h{i,1}, in_param, 0);
-
+  if num_of_points == 3
+    [temp_R temp_T Cp_candidates{i,1}] = sub_p3p(Xp, q_h{i,1}, in_param, 0);
+  else
+    [temp_R temp_T Cp{i,1}{1,1}] = efficient_pnp(Xp, q_h{i,1}, in_param);
+  end
 end
-
-% select one combination of solution from p3p problem.
-Cp = sub_tnm_orth(Cp_candidates);
-
+  
+if num_of_points == 3
+  % select one combination of solution from p3p problem.
+  Cp = sub_tnm_orth(Cp_candidates);
+end
+  
 % compute the extrinsic camera parameter with proposed method.
 [R T n d] = sub_tnm_rt(Xp, Cp);
 

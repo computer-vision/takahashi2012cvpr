@@ -45,7 +45,6 @@ function rep = sub_reproj(Xp, q, R, T, n, d, in_param)
 % ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 % POSSIBILITY OF SUCH DAMAGE.
 
-
 num_of_point = size(Xp, 1);
 num_of_mirror_pose = size(q,1);
 
