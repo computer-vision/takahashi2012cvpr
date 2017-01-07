@@ -34,7 +34,7 @@ function y = sub_plot_plane(points, color, msize, lwidth)
 hold on;
 
 num_of_points = size(points, 1);
-points(num_of_points+1,:) = points(1,:)
+points(num_of_points+1,:) = points(1,:);
 
 pLocusX = points(:,1);
 pLocusY = points(:,2);

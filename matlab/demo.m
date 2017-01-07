@@ -52,10 +52,17 @@ num_of_mirror_pose = size(input, 1);
 % linear solution with proposed method
 [R_t, T_t, n_t, d_t, rep_t] = tnm(model, input, in_param);
 
-% result
+% non linear refinement (minimizing reprojection error)
+[R_t_opt, T_t_opt, n_t_opt, d_t_opt, rep_t_opt] = ...
+    opt(model, input, in_param, R_t, T_t, n_t, d_t);
 
+% result
 fprintf('\n');
 fprintf('Average reprojection error by TNM : %f pixel.\n', rep_t);
+fprintf('\n');
+
+fprintf('\n');
+fprintf('Average reprojection error by TNM (with non-linear refinement): %f pixel.\n', rep_t_opt);
 fprintf('\n');
 
 fprintf('==== Parameters by TNM ====\n');
@@ -67,6 +74,16 @@ n3 = n_t(3,:)'
 d1 = d_t(1,:)
 d2 = d_t(2,:)
 d3 = d_t(3,:)
+
+fprintf('==== Parameters by TNM (with non-linear refinement)====\n');
+R_opt = R_t_opt
+T_opt = T_t_opt
+n1_opt = n_t_opt(1,:)'
+n2_opt = n_t_opt(2,:)'
+n3_opt = n_t_opt(3,:)'
+d1_opt = d_t_opt(1,:)
+d2_opt = d_t_opt(2,:)
+d3_opt = d_t_opt(3,:)
 
 % display the result
 
@@ -97,6 +114,16 @@ Cp_t = (R_t * model' + repmat(T_t, 1, size(model,1)))';
 sub_plot_plane(Cp_t, 'r', 3, 1);
 text(Cp_t(1,1) + offset, Cp_t(1,2) + offset, Cp_t(1,3) + offset, ...
     'Reference Points Estimated by TNM');
+
+% plot parameters by TNM (with non-linear refinement)
+sub_plot_axis(R_t_opt, T_t_opt);
+
+% plot reference points estimated by TNM
+Cp_t_opt = (R_t_opt * model' + repmat(T_t_opt, 1, size(model,1)))';
+sub_plot_plane(Cp_t_opt, 'm', 3, 1);
+text(Cp_t_opt(1,1) + offset, Cp_t_opt(1,2) + offset, Cp_t_opt(1,3) + offset, ...
+    'Reference Points Estimated by TNM (with non-linear refinement)');
+
 
 % plot mirrored reference points
 Cp_t_h = Cp_t;
