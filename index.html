@@ -153,11 +153,11 @@ as digital signage, webcam attached to laptop PC, etc. Once obtained the mapping
  compute the gazing point (pixel) of a person in front of the display by estimating the gazing direction in the camera coordinate system. This scenario allows the person to move fre
 ely, while conventional methods typically restrict the head position to be fixed.</p>
 <p>The key point to solve the problem is the use of mirrored images.
-Suppose we have a single static camera $$C$$ and a static reference object $$X$$ as shown below.
-The camera $$C$$ cannot observe the reference object $$X$$ directly.
-Instead, we use a mirror $$\pi$$ and let the camera $$C$$ observe the reference object $$X$$ through it.
-The goal of our mirror-based calibration is to estimate the relative posture $$R$$ and position $$T$$ of the camera $$C$$ against the reference object $$X$$ by observing three point
-s of $$X$$ via three mirrors $$\pi_j (j=1,2,3)$$ under different unknown positions and orientations.</p>
+Suppose we have a single static camera \(C\) and a static reference object \(X\) as shown below.
+The camera \(C\) cannot observe the reference object \(X\) directly.
+Instead, we use a mirror \(\pi\) and let the camera \(C\) observe the reference object \(X\) through it.
+The goal of our mirror-based calibration is to estimate the relative posture \(R\) and position \(T\) of the camera \(C\) against the reference object \(X\) by observing three point
+s of \(X\) via three mirrors \(\pi_j (j=1,2,3)\) under different unknown positions and orientations.</p>
 <p><img alt="Overview" src="./overview.png" /></p>
 <h1 id="source-code">Source code</h1>
 <h2 id="license">License</h2>
@@ -218,6 +218,5 @@ POSSIBILITY OF SUCH DAMAGE.
         <script src="./js/highlight.pack.js"></script>
         <script src="./js/base.js"></script>
         <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-        <script src="./mathjax.js"></script>
     </body>
 </html>

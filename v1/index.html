@@ -179,30 +179,30 @@ d3 =
 <h3 id="tnmm-top-level-driver"><code>tnm.m</code> : top-level driver</h3>
 <p>The figure below illustrates the measurement model of our method.</p>
 <p><img alt="Geometry" src="../geometry.gif" /></p>
-<p>In this figure, we use the following notations. Notice that $${}^Yx$$ denotes $$x$$ in $$Y$$ coordinate system.</p>
+<p>In this figure, we use the following notations. Notice that \({}^Yx\) denotes \(x\) in \(Y\) coordinate system.</p>
 <ul>
-<li>$$C$$ : camera.</li>
-<li>$$\pi_j (j=1,2,3)$$ : three mirrors.</li>
-<li>$${}^Cn_j (j=1,2,3)$$ : the normal vector of $$\pi_j$$.</li>
-<li>$$d_j (j=1,2,3)$$ : the distance from $$C$$ to $$\pi_j$$.</li>
-<li>$${}^Xp^i (i=1,2,3)$$ : three reference points in the reference object coordinate system.</li>
-<li>$${}^Cp^i (i=1,2,3)$$ : $${}^Xp^i$$ in the camera $$C$$ coordinate system.</li>
-<li>$${}^Cp^i_j (i,j=1,2,3)$$ : Reflection of $${}^Xp^i$$ by $$\pi_j$$ in the camera $$C$$ coordinate system.</li>
-<li>$$q^i_j (i,j=1,2,3)$$ : 2D projection of $${}^Cp^i_j$$ in the camera $$C$$ image screen.</li>
+<li>\(C\) : camera.</li>
+<li>\(\pi_j (j=1,2,3)\) : three mirrors.</li>
+<li>\({}^Cn_j (j=1,2,3)\) : the normal vector of \(\pi_j\).</li>
+<li>\(d_j (j=1,2,3)\) : the distance from \(C\) to \(\pi_j\).</li>
+<li>\({}^Xp^i (i=1,2,3)\) : three reference points in the reference object coordinate system.</li>
+<li>\({}^Cp^i (i=1,2,3)\) : \({}^Xp^i\) in the camera \(C\) coordinate system.</li>
+<li>\({}^Cp^i_j (i,j=1,2,3)\) : Reflection of \({}^Xp^i\) by \(\pi_j\) in the camera \(C\) coordinate system.</li>
+<li>\(q^i_j (i,j=1,2,3)\) : 2D projection of \({}^Cp^i_j\) in the camera \(C\) image screen.</li>
 </ul>
-<p>The goal is to estimate the relative rotation $$R$$ and translation $$T$$ between the camera $$C$$ and the reference $$X$$ which satisfy</p>
+<p>The goal is to estimate the relative rotation \(R\) and translation \(T\) between the camera \(C\) and the reference \(X\) which satisfy</p>
 <blockquote>
-<p>$${}^Cp^i = R \cdot {}^Xp^i + T (i=1,2,3) $$. (1)</p>
+<p>\({}^Cp^i = R \cdot {}^Xp^i + T (i=1,2,3) \). (1)</p>
 </blockquote>
-<p>by knowing $$q^i_j (i,j=1,2,3)$$, the projections of $${}^Xp^i$$ observed via three different mirrors $$\pi_j (j=1,2,3)$$ of unknown positions. The orientation and the position of t
+<p>by knowing \(q^i_j (i,j=1,2,3)\), the projections of \({}^Xp^i\) observed via three different mirrors \(\pi_j (j=1,2,3)\) of unknown positions. The orientation and the position of t
 he mirrors (the distances from the camera to the mirrors) are also estimated as a result.
 So the input / output of the above-mentioned <code>tnm.m</code> can be expressed as follows.</p>
 <ul>
 <li><code>tnm.m</code><ul>
-<li>Input $$q^i_j (i,j=1,2,3)$$ : 2D projections of three reference points observed via three mirrors $$\pi_j (j=1,2,3)$$.</li>
+<li>Input \(q^i_j (i,j=1,2,3)\) : 2D projections of three reference points observed via three mirrors \(\pi_j (j=1,2,3)\).</li>
 <li>Output:<ul>
-<li>$$R, T$$ : The relative posture and position between the camera $$C$$ and the reference $$X$$.</li>
-<li>$${}^Cn_j, d_j (j=1,2,3)$$ : The orientations and distances of the three mirrors $$\pi_j (j=1,2,3)$$.</li>
+<li>\(R, T\) : The relative posture and position between the camera \(C\) and the reference \(X\).</li>
+<li>\({}^Cn_j, d_j (j=1,2,3)\) : The orientations and distances of the three mirrors \(\pi_j (j=1,2,3)\).</li>
 </ul>
 </li>
 </ul>
@@ -215,23 +215,23 @@ So the input / output of the above-mentioned <code>tnm.m</code> can be expressed
 <p><code>sub_p3p.m</code>: P3P per mirrored image.</p>
 <ul>
 <li>Input:<ul>
-<li>$${}^Xp^i (i=1,2,3)$$ : Three reference points, and</li>
-<li>$$q^i (i)$$ : their projections observed via a mirror $$\pi$$.</li>
+<li>\({}^Xp^i (i=1,2,3)\) : Three reference points, and</li>
+<li>\(q^i (i)\) : their projections observed via a mirror \(\pi\).</li>
 </ul>
 </li>
-<li>Output: Up to 4 possible solutions of $${}^Cp^i$$</li>
+<li>Output: Up to 4 possible solutions of \({}^Cp^i\)</li>
 </ul>
 </li>
 <li>
 <p><code>sub_tnm_orth.m</code>: Unique solution selection using an orthogonality constraint.</p>
 <ul>
-<li>Input: 64 sets of $${}^Cp^i_j (i,j=1,2,3)$$.</li>
-<li>Output: The set of $${}^Cp^i_j (i,j=1,2,3)$$ which follows the orthogonality constraint best.</li>
+<li>Input: 64 sets of \({}^Cp^i_j (i,j=1,2,3)\).</li>
+<li>Output: The set of \({}^Cp^i_j (i,j=1,2,3)\) which follows the orthogonality constraint best.</li>
 </ul>
 </li>
-<li><code>sub_tnm_rt.m</code>: Linear estimation of $$R$$ and $$T$$.<ul>
-<li>Input: $${}^Cp^i_j (i,j=1,2,3)$$.</li>
-<li>Output: $$R, T, n_j, d_j (j=1,2,3)$$.</li>
+<li><code>sub_tnm_rt.m</code>: Linear estimation of \(R\) and \(T\).<ul>
+<li>Input: \({}^Cp^i_j (i,j=1,2,3)\).</li>
+<li>Output: \(R, T, n_j, d_j (j=1,2,3)\).</li>
 </ul>
 </li>
 </ol>
@@ -239,9 +239,9 @@ So the input / output of the above-mentioned <code>tnm.m</code> can be expressed
 <ul>
 <li><code>sub_reproj.m</code>: Reprojection error evaluation<ul>
 <li>Input:<ul>
-<li>$${}^Xp^i (i=1,\dots)$$ : Any number of reference points.</li>
-<li>$$q^i_j (i=1,\dots, j=1,2,3)$$ : The projections of the reference points via mirrors.</li>
-<li>$$R, T, n_j, d_j (j=1,2,3)$$ : Estimated parameters.</li>
+<li>\({}^Xp^i (i=1,\dots)\) : Any number of reference points.</li>
+<li>\(q^i_j (i=1,\dots, j=1,2,3)\) : The projections of the reference points via mirrors.</li>
+<li>\(R, T, n_j, d_j (j=1,2,3)\) : Estimated parameters.</li>
 </ul>
 </li>
 <li>Output: Average reprojection error.</li>
@@ -332,21 +332,21 @@ unction in <code>demo.cc</code>.</p>
 <h1 id="how-to-use-the-code-with-your-own-data">How to use the code with your own data</h1>
 <p>To calibrate your own system, please follow the process below. In short, update <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>, then run the program again.</p>
 <ol>
-<li>Suppose you have a reference object $$X$$ and a camera $$C$$.<ol>
-<li>The intrinsic parameters of $$C$$ should be provided. You can use OpenCV to estimate them.</li>
+<li>Suppose you have a reference object \(X\) and a camera \(C\).<ol>
+<li>The intrinsic parameters of \(C\) should be provided. You can use OpenCV to estimate them.</li>
 </ol>
 </li>
-<li>Capture three images of $$X$$ as $$I_1, I_2, I_3$$ via mirrors $$\pi_1, \pi_2, \pi_3$$ under different poses.</li>
-<li>Detect three points of $$X$$ for each of the images ($$I_1, I_2, I_3$$).<ol>
+<li>Capture three images of \(X\) as \(I_1, I_2, I_3\) via mirrors \(\pi_1, \pi_2, \pi_3\) under different poses.</li>
+<li>Detect three points of \(X\) for each of the images (\(I_1, I_2, I_3\)).<ol>
 <li>Here we assume that the images are rectified (undistorted) using the intrinsic parameters before the detection.</li>
-<li>If you used a chessboard pattern as $$X$$ and used OpenCV <a href="http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch
-essboardcorners">findChessboardCorners()</a> to detect it in $$I_1, I_2, I_3$$ automatically, you need to <strong>flip</strong> the detection result because the detector does not account for the observation via mirror.</li>
+<li>If you used a chessboard pattern as \(X\) and used OpenCV <a href="http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findch
+essboardcorners">findChessboardCorners()</a> to detect it in \(I_1, I_2, I_3\) automatically, you need to <strong>flip</strong> the detection result because the detector does not account for the observation via mirror.</li>
 </ol>
 </li>
 <li>
 <p>Store the data into <code>data/model.txt</code> and <code>data/input{1,2,3}.txt</code>.</p>
 <ol>
-<li><code>data/model.txt</code> is a line-oriented plain text file each of lines represents the 3D position of a reference point in $$X$$.<pre><code>0.000000 0.000000 0.000000
+<li><code>data/model.txt</code> is a line-oriented plain text file each of lines represents the 3D position of a reference point in \(X\).<pre><code>0.000000 0.000000 0.000000
 175.000000 0.000000 0.000000
 0.000000 100.000000 0.000000
 </code></pre>
@@ -355,7 +355,7 @@ essboardcorners">findChessboardCorners()</a> to detect it in $$I_1, I_2, I_3$$ a
 </li>
 <li>
 <p><code>data/input{1,2,3}.txt</code> are also line-oriented plain text files, and each of lines represents the 2D projection of the corresponding 3D reference point in <code>data/model.txt</code>. For examp
-le, the first line below is the projection of the first reference point $$(0,0,0)$$ defined in the first line of <code>data/model.txt</code>.</p>
+le, the first line below is the projection of the first reference point \((0,0,0)\) defined in the first line of <code>data/model.txt</code>.</p>
 <pre><code>380.608337 284.673645
 263.854279 284.595978
 377.368225 350.688141
@@ -379,6 +379,5 @@ le, the first line below is the projection of the first reference point $$(0,0,0
         <script src="../js/highlight.pack.js"></script>
         <script src="../js/base.js"></script>
         <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-        <script src="../mathjax.js"></script>
     </body>
 </html>
