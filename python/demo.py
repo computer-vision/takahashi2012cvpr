@@ -1,3 +1,5 @@
+from ast import literal_eval
+
 import numpy as np
 from tnm import tnm, tnm_ba, householder, sub_reproj
 import matplotlib.pyplot as plt
@@ -17,7 +19,13 @@ input5 = np.loadtxt(f'{DATA_DIR}/input5.txt')
 input = np.array([input1, input2, input3, input4, input5])
 print(f'2D points (#_of_mirrors x #_of_reference_points x 2)): {input.shape}')
 
-K = np.loadtxt(f'{DATA_DIR}/camera.txt')
+def comma_handler(val):
+    # handle problem of `,` at .txt file
+    res = str(val).replace(",", "")
+    res = literal_eval(res)
+    return res
+
+K = np.loadtxt(f'{DATA_DIR}/camera.txt', converters=comma_handler)
 print(f'K = {K}')
 
 # linear solution
