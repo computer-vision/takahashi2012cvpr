@@ -1,3 +1,7 @@
+⚠️ This repository is archived. Please use https://github.com/nbhr/pycalib .
+
+----
+
 # Mirror-based Camera Pose Estimation Using an Orthogonality Constraint
 
 This provides an implementation of Takahashi, Nobuhara and Matsuyama "A New Mirror-based Camera Pose Estimation Using an Orthogonality Constraint" presented at CVPR 2012 and IPSJ Transactions on Computer Vision and Applications 2016.
